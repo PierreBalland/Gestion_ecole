@@ -6,6 +6,7 @@
 package gestion_ecole;
 import java.util.ArrayList;
 import connexion.*;
+import mise_a_jour.*;
 /**
  *
  * @author pierr
@@ -18,7 +19,7 @@ public class Gestion_ecole {
     public static void main(String[] args) {
         // TODO code application logic here
         try{
-        Connexion connexion = new Connexion("gestion_ecole","root","AMAZON");
+       /* Connexion connexion = new Connexion("gestion_ecole","root","AMAZON");
       //  connexion.ajouterRequeteMaj("CREATE TABLE test");
      //   connexion.executeUpdate("CREATE TABLE pierre (pierre BIGINT)");
         //  connexion.executeUpdate("SELECT * FROM anneescolaire");
@@ -29,6 +30,9 @@ public class Gestion_ecole {
          p=list.get(0);
          
          System.out.print(p);
+*/     
+      Maj maj=new Maj();
+       maj.ajoutpersonne("Libbon", "Richard", "élève"); 
         }
         catch (Exception e)
         {
