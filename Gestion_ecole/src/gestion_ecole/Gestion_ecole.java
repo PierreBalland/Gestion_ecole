@@ -51,6 +51,8 @@ public class Gestion_ecole {
        System.out.println(liste.get(i));
        
        }
+       SimpleMenuEx ex = new SimpleMenuEx();
+            ex.setVisible(true);
        
                }
 }
