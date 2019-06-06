@@ -40,7 +40,7 @@ public class SimpleMenuEx extends JFrame implements ActionListener {
         createMenuBar();
         setLayout(new FlowLayout());
         this.setTitle("Menu principal");
-        this.setSize(350, 250);
+        this.setSize(800, 400);
         this.setLocationRelativeTo(null);
         b1.addActionListener(this); // le BadIdea1 écoute le bouton
         b2.addActionListener(this);
@@ -58,6 +58,7 @@ public class SimpleMenuEx extends JFrame implements ActionListener {
     System.out.println("Button 1 pressed");
     this.dispose(); // ON PEUT FAIRE VISIBLE FALSE POUR LA GARDER ET PAS AVOIR A LA CREER A CHAQUE FOIS 
     BadIdea1 fenetre_maj=new BadIdea1();
+    fenetre_maj.set_maj();
     fenetre_maj.setVisible(true);
     }
     if(source == b2)
