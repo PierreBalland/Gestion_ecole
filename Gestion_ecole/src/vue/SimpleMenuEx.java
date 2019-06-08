@@ -97,7 +97,7 @@ public class SimpleMenuEx extends JFrame implements ActionListener {
         eMenuItem2.setMnemonic(KeyEvent.VK_E);
         eMenuItem.setToolTipText("Exit application"); // set le texte qui saffiche avec le curseur
         eMenuItem.addActionListener((event) -> System.exit(0));
-        eMenuItem2.addActionListener(this);
+        eMenuItem2.addActionListener((event) -> new SimpleMenuEx());
         fileMenu.add(eMenuItem);
         fileMenu2.add(eMenuItem2);
         menuBar.add(fileMenu);

@@ -30,6 +30,7 @@ JButton b1 = new JButton("Button 1");
 JButton b2 = new JButton("Button 2");
 JButton b3 = new JButton("Button 3");
 JButton b4 = new JButton("Button 4");
+JMenuItem eMenuItem2 = new JMenuItem("Menu");
 JTextField textbox1=new JTextField(); // les 3 textbox
 JTextField textbox2=new JTextField();
 JTextField textbox3=new JTextField();
@@ -40,26 +41,36 @@ public BadIdea1()
     this.addWindowListener(this); // le BadIdea1 s'écoute lui-même!
     this.setSize(800,400);
     this.setLocationRelativeTo(null);
-    // Le menu avec la possibilité de sortir a tout moment
-    JMenuBar menuBar = new JMenuBar();
-    ImageIcon exitIcon = new ImageIcon("exit.png"); // creation de l'image 
-
-    JMenu fileMenu = new JMenu("Exit"); // creation de longlet ? 
-    fileMenu.setMnemonic(KeyEvent.VK_F); // on set un event potentiel ? ...
-   
-    JMenuItem eMenuItem = new JMenuItem("Exit", exitIcon); // on créé un item de menu
-    eMenuItem.setMnemonic(KeyEvent.VK_E);  
-    eMenuItem.setToolTipText("Exit application"); // set le texte qui saffiche avec le curseur
-    eMenuItem.addActionListener((event) -> System.exit(0));
-
-    fileMenu.add(eMenuItem);
-    menuBar.add(fileMenu);
-
-    this.setJMenuBar(menuBar);
+    
+    createMenuBar();
         
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 }
+
+private void createMenuBar() {
+
+        JMenuBar menuBar = new JMenuBar();
+        ImageIcon exitIcon = new ImageIcon("exit.png"); // creation de l'image 
+
+        JMenu fileMenu = new JMenu("Exit"); // creation de longlet ? 
+        JMenu fileMenu2 = new JMenu("Menu");
+        fileMenu.setMnemonic(KeyEvent.VK_F); // on set un event potentiel ? ...
+   
+        JMenuItem eMenuItem = new JMenuItem("Exit", exitIcon); // on créé un item de menu
+        
+        eMenuItem.setMnemonic(KeyEvent.VK_E); 
+        
+        eMenuItem.setToolTipText("Exit application"); // set le texte qui saffiche avec le curseur
+        eMenuItem.addActionListener((event) -> System.exit(0));
+        eMenuItem2.addActionListener(this);
+        
+        
+        fileMenu.add(eMenuItem);
+        fileMenu2.add(eMenuItem2);
+        menuBar.add(fileMenu);
+        menuBar.add(fileMenu2);
+        this.setJMenuBar(menuBar);
+    }
 /**
  * fonction pour le module mise a jour 
  */
@@ -165,6 +176,13 @@ public void actionPerformed(ActionEvent e)
         BadIdea1 fenetre=new BadIdea1();
         fenetre.set_recherche_personne();
         fenetre.setVisible(true);
+    }
+    if (source==eMenuItem2)
+    {
+    System.out.print("Retour menu");
+    SimpleMenuEx gobacktomenu=new SimpleMenuEx();
+    this.dispose();
+    gobacktomenu.setVisible(true);
     }
     else
         System.out.println("Something else");
