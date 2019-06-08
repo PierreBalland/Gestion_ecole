@@ -30,7 +30,8 @@ JButton b1 = new JButton("Button 1");
 JButton b2 = new JButton("Button 2");
 JButton b3 = new JButton("Button 3");
 JButton b4 = new JButton("Button 4");
-JMenuItem eMenuItem2 = new JMenuItem("Menu");
+JButton b5 = new JButton("Button 5");
+JMenuItem eMenuItem2 = new JMenuItem("Menu"); // astuce de l'ajouter en attribut pour les actionlistener (retour menu a chaque fois)
 JTextField textbox1=new JTextField(); // les 3 textbox
 JTextField textbox2=new JTextField();
 JTextField textbox3=new JTextField();
@@ -90,8 +91,19 @@ public void set_maj() // pour la fenetre du module maj
 public void set_recherche(){
     this.setTitle("Recherche d'informations");
     b3.addActionListener(this);
-    b3.setText("Rechercher une personne");
+    b3.setText("Voir toutes les personnes");
     this.add(b3);
+    b5.setText("Voir les infos d'une personne");
+    b5.addActionListener(this);
+    this.add(b5);
+    
+}
+public void voir_info_personne()
+{
+    this.setTitle("Voir info personne");
+    
+   
+
 }
 /**
  * fonction pour la recherche de personne depuis module recherche informations
@@ -177,12 +189,21 @@ public void actionPerformed(ActionEvent e)
         fenetre.set_recherche_personne();
         fenetre.setVisible(true);
     }
-    if (source==eMenuItem2)
+    if (source==eMenuItem2) // RETOUR MENU
     {
-    System.out.print("Retour menu");
-    SimpleMenuEx gobacktomenu=new SimpleMenuEx();
-    this.dispose();
-    gobacktomenu.setVisible(true);
+        System.out.print("Retour menu");
+        SimpleMenuEx gobacktomenu=new SimpleMenuEx();
+        this.dispose();
+        gobacktomenu.setVisible(true);
+    }
+    if (source==b5)
+    {
+        System.out.println("Button 5 pressed");
+        this.dispose(); // ON PEUT FAIRE VISIBLE FALSE POUR LA GARDER ET PAS AVOIR A LA CREER A CHAQUE FOIS 
+        BadIdea1 fenetre=new BadIdea1();
+        fenetre.voir_info_personne();
+        fenetre.setVisible(true);
+    
     }
     else
         System.out.println("Something else");
