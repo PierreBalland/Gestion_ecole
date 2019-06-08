@@ -15,6 +15,7 @@ import mise_a_jour.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
@@ -98,10 +99,22 @@ public void set_recherche(){
     this.add(b5);
     
 }
-public void voir_info_personne()
+public void voir_info_personne(double id)
 {
     this.setTitle("Voir info personne");
-    
+    setLayout(new FlowLayout());
+    Recherche_info recherche=new Recherche_info();
+    ArrayList<ArrayList<String>> arraydepersonnes=recherche.recherche_info_personne(id);
+    for(int i=0;i<arraydepersonnes.size();i++)
+    {
+        // on créé un textbox pour chaque row de personnes
+        for(int k=0;k<arraydepersonnes.get(i).size();k++)
+        {
+        JTextField textbox=new JTextField();
+        textbox.setText(arraydepersonnes.get(i).get(k));
+        this.getContentPane().add(textbox);
+        }
+    }
    
 
 }
@@ -201,7 +214,7 @@ public void actionPerformed(ActionEvent e)
         System.out.println("Button 5 pressed");
         this.dispose(); // ON PEUT FAIRE VISIBLE FALSE POUR LA GARDER ET PAS AVOIR A LA CREER A CHAQUE FOIS 
         BadIdea1 fenetre=new BadIdea1();
-        fenetre.voir_info_personne();
+        fenetre.voir_info_personne(100);
         fenetre.setVisible(true);
     
     }

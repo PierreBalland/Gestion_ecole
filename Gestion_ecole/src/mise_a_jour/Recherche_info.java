@@ -32,13 +32,17 @@ public class Recherche_info {
     }
     /**
      * La fonction renvoie un array d'array contenant toutes les infos de la personne 
+     * @return : dans l'ordre info globale de l'élève, nom de la classe, appreciation du bulletin, evaluation, listedesmatieres
      * @param id l'id de la personne dont on souhaite afficher les infos (prof ou eleve)
      */
-    public void recherche_info_personne(double id){ // il va rester des choses à compléter pour cette méthode, notamment la gestion des trimestres année ... 
+    public ArrayList<ArrayList<String>> recherche_info_personne(double id){ // il va rester des choses à compléter pour cette méthode, notamment la gestion des trimestres année ... 
+        ArrayList<ArrayList<String>> liste=new ArrayList<>();
         ArrayList<String> infoglobale=new ArrayList<>();
         ArrayList<String> typepersonne=new ArrayList<>();
         ArrayList<String> nomclasse=new ArrayList<>();
         ArrayList<String> appreciationbulletin=new ArrayList<>();
+        ArrayList<String> evaluation=new ArrayList<>();
+        ArrayList<String> listedesmatieres=new ArrayList<>();
         try{
             Connexion connexion = new Connexion("gestion_ecole","root","AMAZON");
             // premier array de string contenant infos sur la personne
@@ -51,7 +55,9 @@ public class Recherche_info {
                 //La liste 2 va contenir le nom de la classe de l'élève
                 nomclasse=connexion.remplirChampsRequete("SELECT classe.nom FROM `classe`,`inscription`,`personne` WHERE classe.id_classe=inscription.id_classe and inscription.id_personne="+id+" GROUP BY classe.nom");
                 appreciationbulletin=connexion.remplirChampsRequete("SELECT bulletin.appreciation_globale FROM `bulletin`, `inscription` WHERE bulletin.id_inscription=inscription.id_inscription and inscription.id_personne="+id+"");
-              //  appreciationbulletin=connexion.remplirChampsRequete("");
+                evaluation=connexion.remplirChampsRequete("SELECT evaluation.note, evaluation.appreciation FROM evaluation, detailbulletin, bulletin, inscription WHERE evaluation.id_detail=detailbulletin.id_detail and detailbulletin.id_bulletin=bulletin.id_bulletin and bulletin.id_inscription=inscription.id_inscription and inscription.id_personne="+id+"");
+                listedesmatieres=connexion.remplirChampsRequete("SELECT discipline.nom FROM discipline");
+                System.out.print(listedesmatieres.get(0));
             }
             else
                 System.out.print("NON");
@@ -59,5 +65,12 @@ public class Recherche_info {
         catch(Exception e){
             System.out.println("Erreur dans la recherche dinfo personne");
         }
+        liste.add(infoglobale);
+        liste.add(nomclasse);
+        liste.add(appreciationbulletin);
+        liste.add(evaluation);
+        liste.add(listedesmatieres);
+        
+        return liste;
     }
 }
