@@ -45,6 +45,7 @@ public class Recherche_info {
         ArrayList<String> listedesmatieres=new ArrayList<>();
         ArrayList<String> discipline=new ArrayList<>();
         ArrayList<String> typedepersonne=new ArrayList<>();
+        
         String string="";
         try{
             Connexion connexion = new Connexion("gestion_ecole","root","AMAZON");
@@ -80,6 +81,7 @@ public class Recherche_info {
         liste.add(evaluation);
         liste.add(listedesmatieres);
         liste.add(typedepersonne);
+        liste.add(discipline);
         
         return liste;
     }

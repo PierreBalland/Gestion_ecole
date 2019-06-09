@@ -168,6 +168,14 @@ public void voir_info_personne(double id)
         textbox.setText(arraydinformations.get(1).get(u));
         this.getContentPane().add(textbox);
         }
+        JLabel j4=new JLabel("Enseignant en : ");
+        this.getContentPane().add(j4);
+        for(int u=0;u<arraydinformations.get(6).size();u++)
+        {
+        JTextField textbox=new JTextField();
+        textbox.setText(arraydinformations.get(6).get(u));
+        this.getContentPane().add(textbox);
+        }
     }
         /*
         // on créé un textbox pour chaque row de personnes
