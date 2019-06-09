@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 04 juin 2019 à 12:33
+-- Généré le :  Dim 09 juin 2019 à 19:39
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `anneescolaire` (
 --
 
 INSERT INTO `anneescolaire` (`id_annee`) VALUES
-(100);
+(1);
 
 -- --------------------------------------------------------
 
@@ -58,6 +58,14 @@ CREATE TABLE IF NOT EXISTS `bulletin` (
   KEY `cntrnt10` (`id_trimestre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `bulletin`
+--
+
+INSERT INTO `bulletin` (`id_bulletin`, `id_trimestre`, `id_inscription`, `appreciation_globale`) VALUES
+(1000, 1000, 1, 'Pierre-B bonne appréciation'),
+(2000, 1000, 101, 'Eleve sérieux et motivé ');
+
 -- --------------------------------------------------------
 
 --
@@ -74,6 +82,14 @@ CREATE TABLE IF NOT EXISTS `classe` (
   KEY `cntrnt2` (`id_annee`),
   KEY `cntrnt3` (`id_niveau`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `classe`
+--
+
+INSERT INTO `classe` (`id_classe`, `nom`, `id_niveau`, `id_annee`) VALUES
+(8, 'TD8', 3, 1),
+(9, 'TD9', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -92,6 +108,14 @@ CREATE TABLE IF NOT EXISTS `detailbulletin` (
   KEY `cntrnt12` (`id_enseignement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `detailbulletin`
+--
+
+INSERT INTO `detailbulletin` (`id_detail`, `id_bulletin`, `id_enseignement`, `appreciation`) VALUES
+(10000, 1000, 100, 'En Java très très bien continuez'),
+(20000, 1000, 101, 'Bientôt la médaille Fields si vous continuez ainsi');
+
 -- --------------------------------------------------------
 
 --
@@ -104,6 +128,17 @@ CREATE TABLE IF NOT EXISTS `discipline` (
   `nom` varchar(50) NOT NULL,
   PRIMARY KEY (`id_discipline`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `discipline`
+--
+
+INSERT INTO `discipline` (`id_discipline`, `nom`) VALUES
+(100, 'POO JAVA'),
+(101, 'WebDynamique'),
+(102, 'Probabilites'),
+(103, 'Anthropologie'),
+(104, 'Mathématiques');
 
 -- --------------------------------------------------------
 
@@ -123,6 +158,14 @@ CREATE TABLE IF NOT EXISTS `enseignement` (
   KEY `cntrnt6` (`id_personne`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `enseignement`
+--
+
+INSERT INTO `enseignement` (`id_enseignement`, `id_classe`, `id_discipline`, `id_personne`) VALUES
+(100, 8, 100, 102),
+(101, 8, 104, 103);
+
 -- --------------------------------------------------------
 
 --
@@ -138,6 +181,15 @@ CREATE TABLE IF NOT EXISTS `evaluation` (
   PRIMARY KEY (`id_evaluation`),
   KEY `cntrnt13` (`id_detail`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `evaluation`
+--
+
+INSERT INTO `evaluation` (`id_evaluation`, `id_detail`, `note`, `appreciation`) VALUES
+(2000, 10000, 19, 'excellent'),
+(2001, 20000, 20, 'Pas mal'),
+(2002, 10000, 18, 'magnifique');
 
 -- --------------------------------------------------------
 
@@ -155,6 +207,14 @@ CREATE TABLE IF NOT EXISTS `inscription` (
   KEY `cntrnt8` (`id_personne`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `inscription`
+--
+
+INSERT INTO `inscription` (`id_inscription`, `id_classe`, `id_personne`) VALUES
+(1, 8, 100),
+(101, 9, 101);
+
 -- --------------------------------------------------------
 
 --
@@ -167,6 +227,17 @@ CREATE TABLE IF NOT EXISTS `niveau` (
   `nom` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_niveau`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `niveau`
+--
+
+INSERT INTO `niveau` (`id_niveau`, `nom`) VALUES
+(1, 'Inge1'),
+(2, 'Inge2'),
+(3, 'Inge3'),
+(4, 'Inge4'),
+(5, 'Inge5');
 
 -- --------------------------------------------------------
 
@@ -182,6 +253,18 @@ CREATE TABLE IF NOT EXISTS `personne` (
   `prenom` varchar(20) NOT NULL,
   PRIMARY KEY (`id_personne`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `personne`
+--
+
+INSERT INTO `personne` (`id_personne`, `type`, `nom`, `prenom`) VALUES
+(34, 'élève', 'Libbon', 'Richard'),
+(100, 'élève', 'Balland', 'Pierre'),
+(101, 'élève', 'Paravel', 'Adrien'),
+(102, 'professeur', 'Segado', 'Jean-Pierre'),
+(103, 'professeur', 'Villani', 'Cédric'),
+(34396, 'élève', 'Lhuillier', 'Charles');
 
 -- --------------------------------------------------------
 
@@ -199,6 +282,13 @@ CREATE TABLE IF NOT EXISTS `trimestre` (
   PRIMARY KEY (`id_trimestre`),
   KEY `cntrnt1` (`id_annee`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `trimestre`
+--
+
+INSERT INTO `trimestre` (`id_trimestre`, `numero`, `debut`, `fin`, `id_annee`) VALUES
+(1000, 1, '2018-09-01', '2018-11-01', 1);
 
 --
 -- Contraintes pour les tables déchargées
