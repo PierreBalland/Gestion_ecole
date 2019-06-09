@@ -64,8 +64,7 @@ public class Maj {
     double id_evaluation = rand.nextInt(50000);
         try{
             Connexion connexion = new Connexion("gestion_ecole","root","AMAZON");
-            System.out.print("jusquici ces tbon");
-                    
+                              
             //System.out.print(result);
             detailbulletin=connexion.remplirChampsRequete("SELECT detailbulletin.id_detail FROM detailbulletin,personne,inscription,bulletin,discipline,enseignement WHERE personne.id_personne="+id_eleve+" and personne.id_personne=inscription.id_personne AND inscription.id_inscription=bulletin.id_inscription AND bulletin.id_bulletin=detailbulletin.id_bulletin and detailbulletin.id_enseignement=enseignement.id_enseignement and enseignement.id_discipline=discipline.id_discipline and discipline.nom='"+discipline+"' GROUP BY detailbulletin.id_detail");
             connexion.executeUpdate("INSERT INTO  evaluation (`id_evaluation`, `id_detail`, `note`,`appreciation`) VALUES ("+id_evaluation+",'"+detailbulletin.get(0)+"','"+note+"','"+appreciation+"')");
