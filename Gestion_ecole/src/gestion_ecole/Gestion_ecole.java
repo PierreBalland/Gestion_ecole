@@ -51,8 +51,7 @@ public class Gestion_ecole {
        System.out.println(liste.get(i));
        
        }
-       Recherche_info recherche =new Recherche_info();
-       recherche.recherche_info_personne(100);
+      
        SimpleMenuEx ex = new SimpleMenuEx();
             ex.setVisible(true);
        

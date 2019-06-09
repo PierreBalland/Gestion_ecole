@@ -110,8 +110,10 @@ public void voir_info_personne(double id)
     setLayout(new FlowLayout());
     Recherche_info recherche=new Recherche_info();
     ArrayList<ArrayList<String>> arraydinformations=recherche.recherche_info_personne(id);
+    if(arraydinformations.get(5).get(0).equals("élève"+"\n"))
    // for(int i=0;i<arraydinformations.size();i++)
    // {
+    {
         JLabel j=new JLabel("Info générale de l'élève : ");
         this.getContentPane().add(j);
         for(int u=0;u<arraydinformations.get(0).size();u++)
@@ -136,7 +138,7 @@ public void voir_info_personne(double id)
         textbox.setText(arraydinformations.get(2).get(u));
         this.getContentPane().add(textbox);
         }
-        JLabel j4=new JLabel("Evaluation : ");
+        JLabel j4=new JLabel("Evaluations : ");
         this.getContentPane().add(j4);
         for(int u=0;u<arraydinformations.get(3).size();u++)
         {
@@ -147,6 +149,26 @@ public void voir_info_personne(double id)
         //this.getContentPane().add(matiere);
         this.getContentPane().add(textbox);
         }
+    }
+    if(arraydinformations.get(5).get(0).equals("professeur"+"\n"))
+    {
+        JLabel j=new JLabel("Info générale du professeur : ");
+        this.getContentPane().add(j);
+        for(int u=0;u<arraydinformations.get(0).size();u++)
+        {
+        JTextField textbox=new JTextField();
+        textbox.setText(arraydinformations.get(0).get(u));
+        this.getContentPane().add(textbox);
+        }
+        JLabel j2=new JLabel("Enseigne dans le/les classes : ");
+        this.getContentPane().add(j2);
+        for(int u=0;u<arraydinformations.get(1).size();u++)
+        {
+        JTextField textbox=new JTextField();
+        textbox.setText(arraydinformations.get(1).get(u));
+        this.getContentPane().add(textbox);
+        }
+    }
         /*
         // on créé un textbox pour chaque row de personnes
         for(int k=0;k<arraydinformations.get(i).size();k++)
