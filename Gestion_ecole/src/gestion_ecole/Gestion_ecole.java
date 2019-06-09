@@ -6,7 +6,6 @@
 package gestion_ecole;
 
 import java.util.ArrayList;
-
 import connexion.*;
 import java.awt.EventQueue;
 import mise_a_jour.*;

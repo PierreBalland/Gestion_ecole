@@ -20,6 +20,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import org.jfree.ui.RefineryUtilities;
+import reporting.PieChart_AWT;
 
 /**
  *
@@ -65,6 +67,10 @@ public class SimpleMenuEx extends JFrame implements ActionListener {
         if(source == b2)
         {
             System.out.println("Button 2 pressed");
+            this.dispose();
+            PieChart_AWT demo = new PieChart_AWT( "Part de prof et d'élèves" );  
+            RefineryUtilities.centerFrameOnScreen( demo );    
+            demo.setVisible( true ); 
         }
         if(source == b3) // RECHERCHE DINFO 
         {
