@@ -48,5 +48,32 @@ public class Maj {
         }
     
     }
+    /**
+     * inscris une note à l'eleve dont on rentre l'id, il faut mentionner la discipline appreciation et note bien evidemment
+     * @param id_eleve
+     * @param discipline
+     * @param appreciation
+     * @param note 
+     */
+    public void inscrire_note(double id_eleve,String discipline,String appreciation,int note){
+           //On attribue l'id aléatoirement en espérant ne pas tomber sur le même
+    ArrayList<String> detailbulletin=new ArrayList();
+    ArrayList<String> id_discipline=new ArrayList();
+    // Obtain a number between [0 - 50000].
+    Random rand = new Random();
+    double id_evaluation = rand.nextInt(50000);
+        try{
+            Connexion connexion = new Connexion("gestion_ecole","root","AMAZON");
+            System.out.print("jusquici ces tbon");
+                    
+            //System.out.print(result);
+            detailbulletin=connexion.remplirChampsRequete("SELECT detailbulletin.id_detail FROM detailbulletin,personne,inscription,bulletin,discipline,enseignement WHERE personne.id_personne="+id_eleve+" and personne.id_personne=inscription.id_personne AND inscription.id_inscription=bulletin.id_inscription AND bulletin.id_bulletin=detailbulletin.id_bulletin and detailbulletin.id_enseignement=enseignement.id_enseignement and enseignement.id_discipline=discipline.id_discipline and discipline.nom='"+discipline+"' GROUP BY detailbulletin.id_detail");
+            connexion.executeUpdate("INSERT INTO  evaluation (`id_evaluation`, `id_detail`, `note`,`appreciation`) VALUES ("+id_evaluation+",'"+detailbulletin.get(0)+"','"+note+"','"+appreciation+"')");
+            
+        }
+        catch(Exception e){
+            System.out.println("erreur exception");
+        }
+    }
             
 }

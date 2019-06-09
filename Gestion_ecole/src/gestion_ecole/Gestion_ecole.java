@@ -50,6 +50,8 @@ public class Gestion_ecole {
        System.out.println(liste.get(i));
        
        }
+       Maj maj =new Maj();
+       maj.inscrire_note(100,"POO JAVA","bien",15);
       
        SimpleMenuEx ex = new SimpleMenuEx();
             ex.setVisible(true);

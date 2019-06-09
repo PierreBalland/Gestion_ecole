@@ -85,4 +85,34 @@ public class Recherche_info {
         
         return liste;
     }
+    
+    /**
+     * 
+     * @return un arraylist de int contenant en premier (0) le nbr de profs et en second (1) le nbr deleves de l'ecole
+     */
+    public ArrayList<Integer> recherche_nbr_profs_eleves()
+    {
+        ArrayList<String> professeur=new ArrayList();
+        ArrayList<String> eleves=new ArrayList();
+        ArrayList<Integer> resultat=new ArrayList();
+        int nbrprof=0;
+        int nbreleves=0;
+        try{
+            Connexion connexion=new Connexion("gestion_ecole","root","AMAZON");
+            professeur=connexion.remplirChampsRequete("SELECT * FROM personne WHERE personne.type='professeur'"); 
+            nbrprof=professeur.size();
+            eleves=connexion.remplirChampsRequete("SELECT * FROM personne WHERE personne.type='élève'");
+            nbreleves=eleves.size();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Erreur dans la recherche du nbr de professeur / eleves");
+        }
+    resultat.add(nbrprof);
+    resultat.add(nbreleves);
+    return resultat;
+    }
+    
+    
+    
 }

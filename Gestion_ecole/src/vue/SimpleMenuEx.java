@@ -38,6 +38,7 @@ public class SimpleMenuEx extends JFrame implements ActionListener {
     }
 
     private void initUI() {
+        
         createMenuBar();
         setLayout(new FlowLayout());
         this.setTitle("Menu principal");

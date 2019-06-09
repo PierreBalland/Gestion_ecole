@@ -33,10 +33,13 @@ JButton b2 = new JButton("Button 2");
 JButton b3 = new JButton("Button 3");
 JButton b4 = new JButton("Button 4");
 JButton b5 = new JButton("Button 5");
+JButton b6 = new JButton("Button 6");
+JButton b7 = new JButton("Button 7");
 JMenuItem eMenuItem2 = new JMenuItem("Menu"); // astuce de l'ajouter en attribut pour les actionlistener (retour menu a chaque fois)
 JTextField textbox1=new JTextField(); // les 3 textbox
 JTextField textbox2=new JTextField();
 JTextField textbox3=new JTextField();
+JTextField textbox4=new JTextField();
 
 public BadIdea1()
 {
@@ -84,9 +87,29 @@ public void set_maj() // pour la fenetre du module maj
         b1.setText("Ajouter personne");
         b4.addActionListener(this);
         b4.setText("Delete Personne");
+        b6.addActionListener(this);
+        b6.setText("Inscrire une note à un élève");
         this.add(b1);
         this.add(b4);
+        this.add(b6);
 }
+
+public void set_inscrire_note(){
+    this.setTitle("Inscription de note");
+    this.textbox1.setText("id_eleve");
+    this.textbox2.setText("discipline");
+    this.textbox3.setText("appreciation");
+    this.textbox4.setText("note");
+    this.b7.addActionListener(this);
+    
+    b7.setText("Inscrire la note");
+    this.add(this.textbox1);
+    this.add(this.textbox2);
+    this.add(this.textbox3);
+    this.add(this.textbox4);
+    this.add(b7);
+}
+
 /**
  * fonction pour le module recherche informations 
  */
@@ -293,9 +316,29 @@ public void actionPerformed(ActionEvent e)
             System.out.println("Erreur dans l'id demandé : retour menu");
             SimpleMenuEx retourmenu=new SimpleMenuEx();
             retourmenu.setVisible(true);
+        }  
+    }
+    if (source==b6){ // ALLER VERS LINSCRIPTION DE NOTE
+        System.out.println("Button 6 pressed");
+        this.dispose(); // ON PEUT FAIRE VISIBLE FALSE POUR LA GARDER ET PAS AVOIR A LA CREER A CHAQUE FOIS 
+        BadIdea1 fenetre=new BadIdea1();
+        fenetre.set_inscrire_note();
+        fenetre.setVisible(true);
+    }
+    if (source==b7){ // INSCRIPTION NOTE
+        System.out.println("Button 7 pressed");
+        Maj maj=new Maj();
+        if(this.textbox1.getText()!="id_eleve" && this.textbox2.getText()!="note" && this.textbox3.getText()!="appreciation" && this.textbox4.getText()!="discipline")
+        {
+            maj.inscrire_note(Double.parseDouble(this.textbox1.getText()), this.textbox2.getText(), this.textbox3.getText(),Integer.parseInt(this.textbox4.getText()));
         }
-        
-    
+        else
+        {
+            //on go back au menu si on a mal rempli l'ajout
+            this.dispose();
+            SimpleMenuEx gobacktomenu=new SimpleMenuEx();
+            gobacktomenu.setVisible(true);
+        }
     }
     else
         System.out.println("Something else");
