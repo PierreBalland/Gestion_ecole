@@ -23,6 +23,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import java.util.*;
+import javax.swing.JLabel;
 
 
 public class BadIdea1 extends JFrame implements ActionListener, WindowListener {
@@ -90,6 +91,7 @@ public void set_maj() // pour la fenetre du module maj
  * fonction pour le module recherche informations 
  */
 public void set_recherche(){
+    
     this.setTitle("Recherche d'informations");
     b3.addActionListener(this);
     b3.setText("Voir toutes les personnes");
@@ -97,6 +99,9 @@ public void set_recherche(){
     b5.setText("Voir les infos d'une personne");
     b5.addActionListener(this);
     this.add(b5);
+    JTextField textbox1=new JTextField("Rentrez l'id de la personne à rechercher",20);
+    this.textbox1=textbox1;
+    this.getContentPane().add(this.textbox1);
     
 }
 public void voir_info_personne(double id)
@@ -104,17 +109,53 @@ public void voir_info_personne(double id)
     this.setTitle("Voir info personne");
     setLayout(new FlowLayout());
     Recherche_info recherche=new Recherche_info();
-    ArrayList<ArrayList<String>> arraydepersonnes=recherche.recherche_info_personne(id);
-    for(int i=0;i<arraydepersonnes.size();i++)
-    {
-        // on créé un textbox pour chaque row de personnes
-        for(int k=0;k<arraydepersonnes.get(i).size();k++)
+    ArrayList<ArrayList<String>> arraydinformations=recherche.recherche_info_personne(id);
+   // for(int i=0;i<arraydinformations.size();i++)
+   // {
+        JLabel j=new JLabel("Info générale de l'élève : ");
+        this.getContentPane().add(j);
+        for(int u=0;u<arraydinformations.get(0).size();u++)
         {
         JTextField textbox=new JTextField();
-        textbox.setText(arraydepersonnes.get(i).get(k));
+        textbox.setText(arraydinformations.get(0).get(u));
         this.getContentPane().add(textbox);
         }
-    }
+        JLabel j2=new JLabel("Classe : ");
+        this.getContentPane().add(j2);
+        for(int u=0;u<arraydinformations.get(1).size();u++)
+        {
+        JTextField textbox=new JTextField();
+        textbox.setText(arraydinformations.get(1).get(u));
+        this.getContentPane().add(textbox);
+        }
+        JLabel j3=new JLabel("Appreciation du bulletin : ");
+        this.getContentPane().add(j3);
+        for(int u=0;u<arraydinformations.get(2).size();u++)
+        {
+        JTextField textbox=new JTextField();
+        textbox.setText(arraydinformations.get(2).get(u));
+        this.getContentPane().add(textbox);
+        }
+        JLabel j4=new JLabel("Evaluation : ");
+        this.getContentPane().add(j4);
+        for(int u=0;u<arraydinformations.get(3).size();u++)
+        {
+       // JLabel matiere=new JLabel();
+        JTextField textbox=new JTextField();
+       // matiere.setText("("+arraydinformations.get(4).get(u)+")");
+        textbox.setText(arraydinformations.get(3).get(u));
+        //this.getContentPane().add(matiere);
+        this.getContentPane().add(textbox);
+        }
+        /*
+        // on créé un textbox pour chaque row de personnes
+        for(int k=0;k<arraydinformations.get(i).size();k++)
+        {
+        JTextField textbox=new JTextField();
+        textbox.setText(arraydinformations.get(i).get(k));
+        this.getContentPane().add(textbox);
+        }*/
+   // }
    
 
 }
@@ -209,13 +250,21 @@ public void actionPerformed(ActionEvent e)
         this.dispose();
         gobacktomenu.setVisible(true);
     }
-    if (source==b5)
+    if (source==b5) //VOIR INFO DUNE PERSONNE
     {
         System.out.println("Button 5 pressed");
         this.dispose(); // ON PEUT FAIRE VISIBLE FALSE POUR LA GARDER ET PAS AVOIR A LA CREER A CHAQUE FOIS 
         BadIdea1 fenetre=new BadIdea1();
-        fenetre.voir_info_personne(100);
+        try{
+        fenetre.voir_info_personne(Double.parseDouble(this.textbox1.getText()));
         fenetre.setVisible(true);
+        }
+        catch(Exception exception){
+            System.out.println("Erreur dans l'id demandé : retour menu");
+            SimpleMenuEx retourmenu=new SimpleMenuEx();
+            retourmenu.setVisible(true);
+        }
+        
     
     }
     else

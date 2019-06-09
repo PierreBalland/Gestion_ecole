@@ -55,7 +55,7 @@ public class Recherche_info {
                 //La liste 2 va contenir le nom de la classe de l'élève
                 nomclasse=connexion.remplirChampsRequete("SELECT classe.nom FROM `classe`,`inscription`,`personne` WHERE classe.id_classe=inscription.id_classe and inscription.id_personne="+id+" GROUP BY classe.nom");
                 appreciationbulletin=connexion.remplirChampsRequete("SELECT bulletin.appreciation_globale FROM `bulletin`, `inscription` WHERE bulletin.id_inscription=inscription.id_inscription and inscription.id_personne="+id+"");
-                evaluation=connexion.remplirChampsRequete("SELECT evaluation.note, evaluation.appreciation FROM evaluation, detailbulletin, bulletin, inscription WHERE evaluation.id_detail=detailbulletin.id_detail and detailbulletin.id_bulletin=bulletin.id_bulletin and bulletin.id_inscription=inscription.id_inscription and inscription.id_personne="+id+"");
+                evaluation=connexion.remplirChampsRequete("SELECT evaluation.note, evaluation.appreciation,discipline.nom FROM evaluation, detailbulletin, bulletin, inscription, discipline,enseignement WHERE evaluation.id_detail=detailbulletin.id_detail and detailbulletin.id_bulletin=bulletin.id_bulletin and bulletin.id_inscription=inscription.id_inscription and inscription.id_personne="+id+" and detailbulletin.id_enseignement=enseignement.id_enseignement AND enseignement.id_discipline=discipline.id_discipline");
                 listedesmatieres=connexion.remplirChampsRequete("SELECT discipline.nom FROM discipline");
                 System.out.print(listedesmatieres.get(0));
             }
